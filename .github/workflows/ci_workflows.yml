@@ -12,37 +12,10 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest]
         python: [3.8]
         toxenv: [test]
         toxargs: [-v]
-
-        include:
-
-          - name: Test with oldest supported versions of our dependencies
-            os: ubuntu-18.04
-            python: 3.7
-            toxenv: test-oldestdeps
-            toxargs: -v
-
-          - name: Test with development versions of our dependencies
-            os: ubuntu-20.04  # currently newer than ubuntu-latest
-            python: 3.9
-            toxenv: test-devdeps
-            toxargs: -v
-
-          - name: Code style checks
-            os: ubuntu-latest
-            python: 3.x
-            toxenv: codestyle
-            toxargs: -v
-
-          - name: Documentation build
-            os: ubuntu-latest
-            python: 3.x
-            toxenv: build_docs
-            toxargs: -v
-            apt_packages: graphviz
 
     steps:
     - name: Checkout code
